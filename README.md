@@ -7,6 +7,9 @@ Vue.js入门和简单的应用
 `/guides` guides目录里是每一次实践的目标和必要的指引    
 `/src` src目录是基本的代码
 
+### 预览效果
+查看[Preview: 现有的代码](https://jonham.github.io/Vuejs-StepByStep-Basic/src/preview)
+
 #### 说明
 这个项目是空余时间所维护，可能经常会有变动的地方，欢迎到[Issue](https://github.com/Jonham/Vuejs-StepByStep-Basic/issues)区域评论。  
 评论的方式：点击绿色的 `New issue` 按钮即可创建新的话题。    
