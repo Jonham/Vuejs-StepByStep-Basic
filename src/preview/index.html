@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>Preview: 现有的代码</title>
+</head>
+<body>
+  <!-- “锚点”：vue将渲染在这里 （由js指定的） -->
+  <div id="app"></div>
+
+  <!-- #组件# text/x-template: 就是一个让script标签的内容，不会被当成js代码解析。这个script标签里的内容，我们就可以当成普通的string来使用。 -->
+  <!-- project 母元素的模板 -->
+  <script type="text/x-template" id="project">
+    <div class="project">
+      <div class="raw">
+        <div class="project-item" v-for="(item, index) in projectList">
+          <!-- 最好的写法是用 :href="变量" -->
+          <!-- <a :href="item.url"></a> -->
+          <a v-bind:href="item.url">
+            <!-- 标题 -->
+            <span class="title">{{ index }}.{{ item.title }}</span>
+          </a>
+        </div>
+      </div>
+      <!-- 利用组件渲染 -->
+      <div class="with-components">
+        <h3>下边的列表项是用components渲染出来的：</h3>
+        <!-- template元素不会被渲染出来，适合用来当 循环的父级元素 -->
+        <template v-for="(item, index) in projectList">
+          <project-item
+          :index="index"
+          :url="item.url"
+          :title="item.title"
+          ></project-item>
+        </template>
+
+      </div>
+    </div>
+  </script>
+
+  <!-- project-item 项目列表项 -->
+  <script type="text/x-template" id="project-item">
+    <!-- @click="监听事件" 也可以写成 v-on:click="监听事件" -->
+    <div class="project-item" @click.native="onclick($event)">
+      <!-- 我是单独的project-item -->
+      <!-- :href指定url :style指定样式 -->
+      <a :href="url" :style="linkStyle">
+      <!-- <a :href="url"> -->
+        <span class="title">{{ index }}.{{ title }}</span>
+      </a>
+    </div>
+  </script>
+
+
+  <script src="../lib/vue.min.js"></script>
+  <script src="./project.config.js"></script>
+</body>
+</html>
