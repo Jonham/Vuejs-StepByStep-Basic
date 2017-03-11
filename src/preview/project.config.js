@@ -10,13 +10,22 @@ function getContent (tag) {
 function getRandomOf (max) {
   return (Math.random() * (max-1) + 1).toFixed();
 }
+// 处理相对路径
+var ROOT_PATH = 'https://jonham.github.io/Vuejs-StepByStep-Basic/src/preview/';
+function resolvePath (path) {
+  return ROOT_PATH + path;
+}
 
 // 数据
 var currentProjectList = [
   {
     title: '项目列表主页',
-    url: 'https://jonham.github.io/Vuejs-StepByStep-Basic/src/preview'
-  }
+    url: resolvePath('')
+  },
+  {
+    title: '00 列表渲染',
+    url: resolvePath('00')
+  },
 ];
 
 // 创建一个组件 显示项目的名称和url
