@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>00 列表渲染 - StepByStep.VuejsBasic</title>
+</head>
+<body>
+  <!-- “锚点”：vue将渲染在这里 （由js指定的） -->
+  <div id="stepbystep-basic-area">
+    <!-- 数组展示 -->
+    <div v-for="item in list">
+      <!-- 输出item的值 用 {{ item }} -->
+      {{ item }}
+      <!-- 或者 -->
+      <span
+        style="font-size: 2em; color: #42b983;"
+        class="data-in-list"
+        v-text="item"></span>
+    </div>
+  </div>
+
+
+  <script src="../../lib/vue.min.js"></script>
+  <script>
+  // 1. 找到元素 用来渲染vue。 vue2不支持渲染在 html body这些元素上
+  // var vueMountPoint = document.getElementById("app");
+  // 等价于
+  // var vueMountPoint = document.querySelector("#app");
+
+  new Vue({
+    // 指定渲染的地方 命名随意，只要是合法的元素id <div id="abc">
+    el: '#stepbystep-basic-area',
+    data: {
+      // list是一个数组，会在元素内部渲染出来
+      // 此时 v-for="item in list"
+      // 相当于
+      // for (let index in list) {
+      //   var item = list[index];
+      // }
+      list: [
+        'Step',
+        'By',
+        'Step',
+        'Vue.js',
+        'Basic'
+      ]
+    }
+  })
+  </script>
+</body>
+</html>
