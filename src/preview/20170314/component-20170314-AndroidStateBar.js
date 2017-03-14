@@ -50,10 +50,10 @@ var vm = new Vue({
     time: 0,
 
     icon: {
-      alert: './icon/icon-alert.png',
-      battery: './icon/icon-battery.png',
-      commonMessage: './icon/icon-common-message.png',
-      vibrate: './icon/icon-vibrate.png',
+      alert: './icons/icon-alert.png',
+      battery: './icons/icon-battery.png',
+      commonMessage: './icons/icon-common-message.png',
+      vibrate: './icons/icon-vibrate.png',
     }
   },
   mounted: function() {
