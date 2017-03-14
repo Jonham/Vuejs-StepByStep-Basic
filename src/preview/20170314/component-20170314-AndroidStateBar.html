@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>Android-State-Bar: with Vue.js Components</title>
+    <link rel="stylesheet" href="AndroidStateBar.css">
+  </head>
+<body>
+  <img src="AndroidStateBar.png" alt="">
+  <hr>
+  <div class="center">
+    <h3>下边是模拟区</h3>
+  </div>
+
+  <div id="android-state-bar">
+    <div class="bar">
+      <div class="left">
+        <common-message
+          :num="unreadMessageCount"
+          :icon="icon.commonMessage"></common-message>
+      </div>
+      <div class="right">
+        <icon-switch :icon="icon.alert"></icon-switch>
+        <icon-switch :icon="icon.vibrate"></icon-switch>
+        <signal :signaltype="signalType" :condition="signalCondition"></signal>
+        <battery :num="51"></battery>
+      </div>
+      <!-- 基于父级 绝对居中 -->
+      <div class="bar-center">
+        <time-clock :time="time"></time-clock>
+      </div>
+    </div>
+  </div>
+
+  <!-- 以下是 组件的模板 template  -->
+  <script type="x-template" id="IconSwitch">
+    <div class="asbar-icon-switch">
+      <img :src="icon" class="icon"/>
+    </div>
+  </script>
+  <script type="x-template" id="Signal">
+    <div class="asbar-signal">
+      <div class="signal-type" v-text="signaltype"></div>
+      <!-- 信号柱  -->
+      <div class="signal-bars">
+        <template v-for="index in condition">
+          <div class="signal-bar" :class="['bar-' + index]"></div>
+        </template>
+        <!-- 空的信号柱  -->
+        <template v-for="index in (5 - condition)">
+          <div class="signal-bar empty"></div>
+        </template>
+      </div>
+    </div>
+  </script>
+  <!-- 电池 -->
+  <script type="x-template" id="Battery">
+    <div class="asbar-battery">
+      <div class="left-square"></div>
+      <!-- 电量值 -->
+      <div class="num" v-text="num"></div>
+    </div>
+  </script>
+  <script type="x-template" id="CommonMessage">
+    <div class="asbar-common-message">
+      <div class="unread-count" v-text="num"></div>
+      <img :src="icon" class="icon"/>
+    </div>
+  </script>
+  <script type="x-template" id="Time">
+    <div class="asbar-time" v-text="format(time)">
+    </div>
+  </script>
+
+  <script src="../../lib/vue.js"></script>
+  <script src="./component-20170314-AndroidStateBar.js"></script>
+</body>
+</html>

@@ -1,11 +1,3 @@
-// 在DOM（文件）里查找标签，并返回内容
-function getContent (tag) {
-  // querySelector可以通过CSS定义，快速查找元素的方法。
-  //   会返回最先符合tag这个条件的元素，是类似于jQuery的查找元素的方式
-  var element = document.querySelector(tag);
-  // 返回标签元素的内容文本
-  return element.innerHTML;
-}
 // 返回随机数
 function getRandomOf (max) {
   return (Math.random() * (max-1) + 1).toFixed();
@@ -26,6 +18,14 @@ var currentProjectList = [
     title: '00 列表渲染',
     url: resolvePath('00')
   },
+  {
+    title: '20170313 一个最简单的组件',
+    url: resolvePath('20170313')
+  },
+  {
+    title: '20170314 用组件模拟Android的状态栏',
+    url: resolvePath('20170314/component-20170314-AndroidStateBar.html')
+  },
 ];
 
 // 创建一个组件 显示项目的名称和url
@@ -33,7 +33,7 @@ var currentProjectList = [
 // Vue.component('project-item', projectItem) 也可以进行注册
 var projectItem = {
   // 获取模板
-  template: getContent('#project-item'),
+  template: '#project-item',
   // name是标示这个模板的，可以不写
   name: 'ProjectItem',
   // 这个data只在这个组件里有效
@@ -48,7 +48,7 @@ var projectItem = {
         // 利用随机数函数，让组件的 超链接字体 大小随机
         fontSize: getRandomOf(5) + 'em',
         // 随机颜色
-        color: 'rgba('+getRandomOf(255)+','+getRandomOf(255)+','+getRandomOf(255)+','+(Math.random())+')'
+        // color: 'rgba('+getRandomOf(255)+','+getRandomOf(255)+','+getRandomOf(255)+','+(Math.random())+')'
       }
     };
   },
@@ -79,7 +79,7 @@ new Vue({
     projectList: currentProjectList
   },
   // "模板": 其实就是html代码，已标注了vue数据和逻辑插入的位置
-  template: getContent("#project"),
+  template: "#project",
   // 组件： 引入组件
   components: {
     'project-item': projectItem

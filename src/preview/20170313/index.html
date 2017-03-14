@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Build a Basic Vue Component</title>
+</head>
+<body>
+  <div class="parent">
+    我是老爸，我有两个儿子：
+    <div class="child">
+      我是儿子1
+    </div>
+    <div class="child">
+      我是儿子2
+    </div>
+  </div>
+
+  <div class="jonham-component-scope">
+    <parent name="parent">
+      <child name="儿子1"></child>
+      <child name="儿子1"></child>
+    </parent>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+
+  var componentsList = ['parent', 'child'];
+  // 先写成list，再统一注册
+  componentsList.forEach(function(n) {
+    // 记得组件在vue实例之前注册
+    Vue.component(n, {
+      template: '<div class="'+ n +'"> 我是{{name}}<slot></slot></div>',
+      props: ['name']
+    });
+  })
+
+  var vm = new Vue({
+    el: ".jonham-component-scope"
+  })
+
+</script>
+</body>
+</html>

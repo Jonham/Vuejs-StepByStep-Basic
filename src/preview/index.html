@@ -22,10 +22,9 @@
         <div class="project-item" v-for="(item, index) in projectList">
           <!-- 最好的写法是用 :href="变量" -->
           <!-- <a :href="item.url"></a> -->
-          <a v-bind:href="item.url">
-            <!-- 标题 -->
+          <!--<a v-bind:href="item.url">
             <span class="title">{{ index }}.{{ item.title }}</span>
-          </a>
+          </a>-->
         </div>
       </div>
       <!-- 利用组件渲染 -->
@@ -50,7 +49,7 @@
     <div class="project-item" @click.native="onclick($event)">
       <!-- 我是单独的project-item -->
       <!-- :href指定url :style指定样式 -->
-      <a :href="url" :style="linkStyle">
+      <a :href="url">
       <!-- <a :href="url"> -->
         <span class="title">{{ index }}.{{ title }}</span>
       </a>
